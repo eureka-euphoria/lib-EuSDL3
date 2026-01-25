@@ -2,7 +2,7 @@
 --Written by Andy P.
 --Icy Viking Games
 --SDL_TTF Wrapper for Euphoria
---Copyright (c) 2025
+--Copyright (c) 2026
 
 include std/ffi.e
 include std/os.e
@@ -805,4 +805,21 @@ public constant xTTF_WasInit = define_c_func(ttf,"+TTF_WasInit",{},C_INT)
 public function TTF_WasInit()
 	return c_func(xTTF_WasInit,{})
 end function
-­16.41
+
+public constant xTTF_GetFontWeight = define_c_func(ttf,"+TTF_GetFontWeight",{C_POINTER},C_INT)
+
+public function TTF_GetFontWeight(atom font)
+	return c_func(xTTF_GetFontWeight,{font})
+end function
+
+public constant TTF_FONT_WEIGHT_THIN        =100 --/**< Thin (100) named font weight value */
+public constant TTF_FONT_WEIGHT_EXTRA_LIGHT =200 --/**< ExtraLight (200) named font weight value */
+public constant TTF_FONT_WEIGHT_LIGHT       =300 --/**< Light (300) named font weight value */
+public constant TTF_FONT_WEIGHT_NORMAL      =400 --/**< Normal (400) named font weight value */
+public constant TTF_FONT_WEIGHT_MEDIUM      =500 --/**< Medium (500) named font weight value */
+public constant TTF_FONT_WEIGHT_SEMI_BOLD   =600 --/**< SemiBold (600) named font weight value */
+public constant TTF_FONT_WEIGHT_BOLD        =700 --/**< Bold (700) named font weight value */
+public constant TTF_FONT_WEIGHT_EXTRA_BOLD  =800 --/**< ExtraBold (800) named font weight value */
+public constant TTF_FONT_WEIGHT_BLACK       =900 --/**< Black (900) named font weight value */
+public constant TTF_FONT_WEIGHT_EXTRA_BLACK =950 --/**< ExtraBlack (950) named font weight value */
+­819.51
