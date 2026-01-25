@@ -1,6 +1,6 @@
 --EuSDLImage3
 --Written by Andy P.
---Copyright (c) 2025
+--Copyright (c) 2026
 
 include std/ffi.e
 include std/machine.e
@@ -24,8 +24,8 @@ if img = 0 then
 end if
 
 public constant SDL_IMAGE_MAJOR_VERSION = 3,
-				SDL_IMAGE_MINOR_VERSION = 2,
-				SDL_IMAGE_PATCHLEVEL = 2
+				SDL_IMAGE_MINOR_VERSION = 4,
+				SDL_IMAGE_PATCHLEVEL = 0
 				
 public constant xIMG_Version = define_c_func(img,"+IMG_Version",{},C_INT)
 
@@ -387,4 +387,279 @@ public constant xIMG_LoadWEBPAnimation_IO = define_c_func(img,"+IMG_LoadWEBPAnim
 public function IMG_LoadWEBPAnimation_IO(atom src)
 	return c_func(xIMG_LoadWEBPAnimation_IO,{src})
 end function
-­7.16
+
+public constant xIMG_GetClipboardImage = define_c_func(img,"+IMG_GetClipboardImage",{},C_POINTER)
+
+public function IMG_GetClipboardImage()
+	return c_func(xIMG_GetClipboardImage,{})
+end function
+
+public constant xIMG_isANI = define_c_func(img,"+IMG_isANI",{C_POINTER},C_BOOL)
+
+public function IMG_isANI(atom src)
+	return c_func(xIMG_isANI,{src})
+end function
+
+public constant xIMG_CreateAnimatedCursor = define_c_func(img,"+IMG_CreateAnimatedCursor",{C_POINTER,C_INT,C_INT},C_POINTER)
+
+public function IMG_CreateAnimatedCursor(atom anim,atom hot_x,atom hot_y)
+	return c_func(xIMG_CreateAnimatedCursor,{anim,hot_x,hot_y})
+end function
+
+public constant xIMG_Save = define_c_func(img,"+IMG_Save",{C_POINTER,C_STRING},C_BOOL)
+
+public function IMG_Save(atom surface,sequence file)
+	return c_func(xIMG_Save,{surface,file})
+end function
+
+public constant xIMG_SaveTyped_IO = define_c_func(img,"+IMG_SaveTyped_IO",{C_POINTER,C_POINTER,C_BOOL,C_STRING},C_BOOL)
+
+public function IMG_SaveTyped_IO(atom surface,atom dst,atom closeio,sequence stype)
+	return c_func(xIMG_SaveTyped_IO,{surface,dst,closeio,stype})
+end function
+
+public constant xIMG_SaveBMP = define_c_func(img,"+IMG_SaveBMP",{C_POINTER,C_STRING},C_BOOL)
+
+public function IMG_SaveBMP(atom surface,sequence stype)
+	return c_func(xIMG_SaveBMP,{surface,stype})
+end function
+
+public constant xIMG_SaveBMP_IO = define_c_func(img,"+IMG_SaveBMP_IO",{C_POINTER,C_POINTER,C_BOOL},C_BOOL)
+
+public function IMG_SaveBMP_IO(atom surface,atom dst,atom closeio)
+	return c_func(xIMG_SaveBMP_IO,{surface,dst,closeio})
+end function
+
+public constant xIMG_SaveCUR = define_c_func(img,"+IMG_SaveCUR",{C_POINTER,C_STRING},C_BOOL)
+
+public function IMG_SaveCUR(atom surface,sequence stype)
+	return c_func(xIMG_SaveCUR,{surface,stype})
+end function
+
+public constant xIMG_SaveCUR_IO = define_c_func(img,"+IMG_SaveCUR_IO",{C_POINTER,C_POINTER,C_BOOL},C_BOOL)
+
+public function IMG_SaveCUR_IO(atom surface,atom dst,atom closeio)
+	return c_func(xIMG_SaveCUR_IO,{surface,dst,closeio})
+end function
+
+public constant xIMG_SaveGIF = define_c_func(img,"+IMG_SaveGIF",{C_POINTER,C_STRING},C_BOOL)
+
+public function IMG_SaveGIF(atom surface,sequence file)
+	return c_func(xIMG_SaveGIF,{surface,file})
+end function
+
+public constant xIMG_SaveGIF_IO = define_c_func(img,"+IMG_SaveGIF_IO",{C_POINTER,C_POINTER,C_BOOL},C_BOOL)
+
+public function IMG_SaveGIF_IO(atom surface,atom dst,atom closeio)
+	return c_func(xIMG_SaveGIF_IO,{surface,dst,closeio})
+end function
+
+public constant xIMG_SaveICO = define_c_func(img,"+IMG_SaveICO",{C_POINTER,C_STRING},C_BOOL)
+
+public function IMG_SaveICO(atom surface,sequence file)
+	return c_func(xIMG_SaveICO,{surface,file})
+end function
+
+public constant xIMG_SaveICO_IO = define_c_func(img,"+IMG_SaveICO_IO",{C_POINTER,C_POINTER,C_BOOL},C_BOOL)
+
+public function IMG_SaveICO_IO(atom surface,atom dst,atom closeio)
+	return c_func(xIMG_SaveICO_IO,{surface,dst,closeio})
+end function
+
+--public constant xIMG_SaveJPG = define_c_func(img,"+IMG_SaveJPG",{C_POINTER,C_STRING,C_INT},C_BOOL)
+
+--public function IMG_SaveJPG(atom surface,sequence file,atom quality)
+--	return c_func(xIMG_SaveJPG,{surface,file,quality})
+--end function
+
+--public constant xIMG_SaveJPG_IO = define_c_func(img,"+IMG_SaveJPG_IO",{C_POINTER,C_POINTER,C_BOOL,C_INT},C_BOOL)
+
+--public function IMG_SaveJPG_IO(atom surface,atom dst,atom closeio,atom quality)
+--	return c_func(xIMG_SaveJPG_IO,{surface,dst,closeio,quality})
+--end function
+
+--public constant xIMG_SavePNG = define_c_func(img,"+IMG_SavePNG",{C_POINTER,C_STRING},C_BOOL)
+
+--public function IMG_SavePNG(atom surface,sequence file)
+--	return c_func(xIMG_SavePNG,{surface,file})
+--end function
+
+public constant xIMG_SaveTGA = define_c_func(img,"+IMG_SaveTGA",{C_POINTER,C_STRING},C_BOOL)
+
+public function IMG_SaveTGA(atom surface,sequence file)
+	return c_func(xIMG_SaveTGA,{surface,file})
+end function
+
+public constant xIMG_SaveTGA_IO = define_c_func(img,"+IMG_SaveTGA_IO",{C_POINTER,C_POINTER,C_BOOL},C_BOOL)
+
+public function IMG_SaveTGA_IO(atom surface,atom dst,atom closeio)
+	return c_func(xIMG_SaveTGA_IO,{surface,dst,closeio})
+end function
+
+public constant xIMG_SaveWEBP = define_c_func(img,"+IMG_SaveWEBP",{C_POINTER,C_STRING,C_FLOAT},C_BOOL)
+
+public function IMG_SaveWEBP(atom surface,sequence file,atom quality)
+	return c_func(xIMG_SaveWEBP,{surface,file,quality})
+end function
+
+public constant xIMG_SaveWEBP_IO = define_c_func(img,"+IMG_SaveWEBP_IO",{C_POINTER,C_POINTER,C_BOOL,C_FLOAT},C_BOOL)
+
+public function IMG_SaveWEBP_IO(atom surface,atom dst,atom closeio,atom quality)
+	return c_func(xIMG_SaveWEBP_IO,{surface,dst,closeio,quality})
+end function
+
+public constant xIMG_LoadGPUTexture = define_c_func(img,"+IMG_LoadGPUTexture",{C_POINTER,C_POINTER,C_STRING,C_POINTER,C_POINTER},C_POINTER)
+
+public function IMG_LoadGPUTexture(atom device,atom copy_pass,sequence file,atom width,atom height)
+	return c_func(xIMG_LoadGPUTexture,{device,copy_pass,file,width,height})
+end function
+
+public constant xIMG_LoadGPUTexture_IO = define_c_func(img,"+IMG_LoadGPUTexture_IO",{C_POINTER,C_POINTER,C_POINTER,C_BOOL,C_POINTER,C_POINTER},C_POINTER)
+
+public function IMG_LoadGPUTexture_IO(atom device,atom copy_pass,atom src,atom closeio,atom width,atom height)
+	return c_func(xIMG_LoadGPUTexture_IO,{device,copy_pass,src,closeio,width,height})
+end function
+
+public constant xIMG_LoadGPUTextureTyped_IO = define_c_func(img,"+IMG_LoadGPUTextureTyped_IO",{C_POINTER,C_POINTER,C_POINTER,C_BOOL,C_STRING,C_POINTER,C_POINTER},C_POINTER)
+
+public function IMG_LoadGPUTextureTyped_IO(atom device,atom copy_pass,atom src,atom closeio,sequence stype,atom width,atom height)
+	return c_func(xIMG_LoadGPUTextureTyped_IO,{device,copy_pass,src,closeio,stype,width,height})
+end function
+
+--public constant xIMG_LoadAnimation_IO = define_c_func(img,"+IMG_LoadAnimation_IO",{C_POINTER,C_BOOL},C_POINTER)
+
+--public function IMG_LoadAnimation_IO(atom src,atom closeio)
+--	return c_func(xIMG_LoadAnimation_IO,{src,closeio})
+--end function
+
+public constant xIMG_LoadAPNGAnimation_IO = define_c_func(img,"+IMG_LoadAPNGAnimation_IO",{C_POINTER},C_POINTER)
+
+public function IMG_LoadAPNGAnimation_IO(atom src)
+	return c_func(xIMG_LoadAPNGAnimation_IO,{src})
+end function
+
+public constant xIMG_LoadAVIFAnimation_IO = define_c_func(img,"+IMG_LoadAVIFAnimation_IO",{C_POINTER},C_POINTER)
+
+public function IMG_LoadAVIFAnimation_IO(atom src)
+	return c_func(xIMG_LoadAVIFAnimation_IO,{src})
+end function
+
+public constant xIMG_CreateAnimationDecoder = define_c_func(img,"+IMG_CreateAnimationDecoder",{C_STRING},C_POINTER)
+
+public function IMG_CreateAnimationDecoder(sequence file)
+	return c_func(xIMG_CreateAnimationDecoder,{file})
+end function
+
+public constant xIMG_CreateAnimationDecoder_IO = define_c_func(img,"+IMG_CreateAnimationDecoder_IO",{C_POINTER,C_BOOL,C_STRING},C_POINTER)
+
+public function IMG_CreateAnimationDecoder_IO(atom src,atom closeio,sequence stype)
+	return c_func(xIMG_CreateAnimationDecoder_IO,{src,closeio,stype})
+end function
+
+public constant xIMG_CreateAnimationDecoderWithProperties = define_c_func(img,"+IMG_CreateAnimationDecoderWithProperties",{C_UINT32},C_POINTER)
+
+public function IMG_CreateAnimationDecoderWithProperties(atom props)
+	return c_func(xIMG_CreateAnimationDecoderWithProperties,{props})
+end function
+
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_FILENAME_STRING               = "SDL_image.animation_decoder.create.filename"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_IOSTREAM_POINTER              = "SDL_image.animation_decoder.create.iostream"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_IOSTREAM_AUTOCLOSE_BOOLEAN    = "SDL_image.animation_decoder.create.iostream.autoclose"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_TYPE_STRING                   = "SDL_image.animation_decoder.create.type"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_TIMEBASE_NUMERATOR_NUMBER     = "SDL_image.animation_decoder.create.timebase.numerator"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_TIMEBASE_DENOMINATOR_NUMBER   = "SDL_image.animation_decoder.create.timebase.denominator"
+
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_AVIF_MAX_THREADS_NUMBER        ="SDL_image.animation_decoder.create.avif.max_threads"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_AVIF_ALLOW_INCREMENTAL_BOOLEAN ="SDL_image.animation_decoder.create.avif.allow_incremental"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_AVIF_ALLOW_PROGRESSIVE_BOOLEAN ="SDL_image.animation_decoder.create.avif.allow_progressive"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_GIF_TRANSPARENT_COLOR_INDEX_NUMBER ="SDL_image.animation_encoder.create.gif.transparent_color_index"
+public constant IMG_PROP_ANIMATION_DECODER_CREATE_GIF_NUM_COLORS_NUMBER          ="SDL_image.animation_encoder.create.gif.num_colors"
+
+public constant xIMG_GetAnimationDecoderProperties = define_c_func(img,"+IMG_GetAnimationDecoderProperties",{C_POINTER},C_UINT32)
+
+public function IMG_GetAnimationDecoderProperties(atom decoder)
+	return c_func(xIMG_GetAnimationDecoderProperties,{decoder})
+end function
+
+public constant IMG_PROP_METADATA_IGNORE_PROPS_BOOLEAN              =   "SDL_image.metadata.ignore_props"
+public constant IMG_PROP_METADATA_DESCRIPTION_STRING                =   "SDL_image.metadata.description"
+public constant IMG_PROP_METADATA_COPYRIGHT_STRING                  =   "SDL_image.metadata.copyright"
+public constant IMG_PROP_METADATA_TITLE_STRING                      =   "SDL_image.metadata.title"
+public constant IMG_PROP_METADATA_AUTHOR_STRING                     =   "SDL_image.metadata.author"
+public constant IMG_PROP_METADATA_CREATION_TIME_STRING              =   "SDL_image.metadata.creation_time"
+public constant IMG_PROP_METADATA_FRAME_COUNT_NUMBER                =   "SDL_image.metadata.frame_count"
+public constant IMG_PROP_METADATA_LOOP_COUNT_NUMBER                 =   "SDL_image.metadata.loop_count"
+
+public constant xIMG_GetAnimationDecoderFrame = define_c_func(img,"+IMG_GetAnimationDecoderFrame",{C_POINTER,C_POINTER,C_POINTER},C_BOOL)
+
+public function IMG_GetAnimationDecoderFrame(atom decoder,atom frame,atom duration)
+	return c_func(xIMG_GetAnimationDecoderFrame,{decoder,frame,duration})
+end function
+
+public constant xIMG_GetAnimationDecoderStatus = define_c_func(img,"+IMG_GetAnimationDecoderStatus",{C_POINTER},C_INT)
+
+public function IMG_GetAnimationDecoderStatus(atom decoder)
+	return c_func(xIMG_GetAnimationDecoderStatus,{decoder})
+end function
+
+public constant xIMG_ResetAnimationDecoder = define_c_func(img,"+IMG_ResetAnimationDecoder",{C_POINTER},C_BOOL)
+
+public function IMG_ResetAnimationDecoder(atom decoder)
+	return c_func(xIMG_ResetAnimationDecoder,{decoder})
+end function
+
+public constant xIMG_CloseAnimationDecoder = define_c_func(img,"+IMG_CloseAnimationDecoder",{C_POINTER},C_BOOL)
+
+public function IMG_CloseAnimationDecoder(atom decoder)
+	return c_func(xIMG_CloseAnimationDecoder,{decoder})
+end function
+
+public constant xIMG_CreateAnimationEncoder = define_c_func(img,"+IMG_CreateAnimationEncoder",{C_STRING},C_POINTER)
+
+public function IMG_CreateAnimationEncoder(sequence file)
+	return c_func(xIMG_CreateAnimationEncoder,{file})
+end function
+
+public constant xIMG_CreateAnimationEncoder_IO = define_c_func(img,"+IMG_CreateAnimationEncoder_IO",{C_POINTER,C_BOOL,C_STRING},C_POINTER)
+
+public function IMG_CreateAnimationEncoder_IO(atom dst,atom closeio,sequence stype)
+	return c_func(xIMG_CreateAnimationEncoder_IO,{dst,closeio,stype})
+end function
+
+public constant xIMG_CreateAnimationEncoderWithProperties = define_c_func(img,"+IMG_CreateAnimationEncoderWithProperties",{C_UINT32},C_POINTER)
+
+public function IMG_CreateAnimationEncoderWithProperties(atom props)
+	return c_func(xIMG_CreateAnimationEncoderWithProperties,{props})
+end function
+
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_FILENAME_STRING               = "SDL_image.animation_encoder.create.filename"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_IOSTREAM_POINTER              = "SDL_image.animation_encoder.create.iostream"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_IOSTREAM_AUTOCLOSE_BOOLEAN    = "SDL_image.animation_encoder.create.iostream.autoclose"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_TYPE_STRING                   = "SDL_image.animation_encoder.create.type"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_QUALITY_NUMBER                = "SDL_image.animation_encoder.create.quality"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_TIMEBASE_NUMERATOR_NUMBER     = "SDL_image.animation_encoder.create.timebase.numerator"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_TIMEBASE_DENOMINATOR_NUMBER   = "SDL_image.animation_encoder.create.timebase.denominator"
+
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_AVIF_MAX_THREADS_NUMBER        ="SDL_image.animation_encoder.create.avif.max_threads"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_AVIF_KEYFRAME_INTERVAL_NUMBER  ="SDL_image.animation_encoder.create.avif.keyframe_interval"
+public constant IMG_PROP_ANIMATION_ENCODER_CREATE_GIF_USE_LUT_BOOLEAN            ="SDL_image.animation_encoder.create.gif.use_lut"
+
+public constant xIMG_AddAnimationEncoderFrame = define_c_func(img,"+IMG_AddAnimationEncoderFrame",{C_POINTER,C_POINTER,C_UINT64},C_BOOL)
+
+public function IMG_AddAnimationEncoderFrame(atom encoder,atom surface,atom duration)
+	return c_func(xIMG_AddAnimationEncoderFrame,{encoder,surface,duration})
+end function
+
+public constant xIMG_CloseAnimationEncoder = define_c_func(img,"+IMG_CloseAnimationEncoder",{C_POINTER},C_BOOL)
+
+public function IMG_CloseAnimationEncoder(atom encoder)
+	return c_func(xIMG_CloseAnimationEncoder,{encoder})
+end function
+
+public enum type IMG_AnimationDecoderStatus
+	IMG_DECODER_STATUS_INVALID = -1,
+	IMG_DECODER_STATUS_OK = 0,
+	IMG_DECODER_STATUS_FAILED,
+	IMG_DECODER_STATUS_COMPLETE
+end type
+­663.28
