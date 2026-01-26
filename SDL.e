@@ -2,9 +2,9 @@
 --EuSDL 3
 --Written by Andy P.
 --SDL3 wrapper for OpenEuphoria
---SDL Ver: 3.2.24
+--SDL Ver: 3.4.0
 --Eu Ver: 4.1.0 Beta 2
---Copyright (c) 2025
+--Copyright (c) 2026
 ---------------------------------
 include std/ffi.e
 include std/machine.e
@@ -20,7 +20,7 @@ ifdef WINDOWS then
 	sdl = open_dll("libSDL3.dylib")
 end ifdef
 
-if sdl = -1 then
+if sdl = 0 then
 	puts(1,"Failed to load SDL3!\n")
 	abort(0)
 end if
@@ -80,5 +80,4 @@ public include Include/SDL_touch.e
 public include Include/SDL_version.e
 public include Include/SDL_video.e
 --public include SDL_oldnames.e
-Â­17.10
-
+­5.16
